@@ -36,6 +36,7 @@ public class EnemyInteraction : InteractableBase
         else
         {
             dialogDisplayController.CloseDialogue();
+            IsOpenDialogueUI = false;
         }
     }
 }
