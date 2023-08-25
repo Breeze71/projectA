@@ -238,7 +238,7 @@ MonoBehaviour:
   icon: {fileID: 938154373}
   player: {fileID: 1016865407}
   damageAmount: 20
-  conversation: {fileID: 11400000, guid: 4c60dba36f0b4d64ab566c4add88438b, type: 2}
+  conversation: {fileID: 11400000, guid: 867beee643920b14e859b4d5a88c9af0, type: 2}
   Dialogue: {fileID: 212157276}
 --- !u!1 &171719163
 GameObject:
