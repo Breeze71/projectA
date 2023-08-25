@@ -1,21 +1,20 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CircleCollider2D))]
 public abstract class InteractableBase : MonoBehaviour
 {
-    private const string Player = "Player";
-
     [SerializeField] protected CircleCollider2D coll;
     [SerializeField] protected GameObject icon;
-    
+    [SerializeField] protected GameObject player;
+    protected Player playerScript;
     protected bool isInteractable = false;
 
-    private void Start() 
+    public virtual void Start() 
     {
         InputManager.Instanse.OnInteract_Performed += InputManager_OnInteract_Performed;
+
+        playerScript = player.GetComponent<Player>();
     }
     private void InputManager_OnInteract_Performed(object sender, EventArgs e)
     {
@@ -30,7 +29,7 @@ public abstract class InteractableBase : MonoBehaviour
     #region OnTrigger
     private void OnTriggerEnter2D(Collider2D _other)
     {
-        if(_other.gameObject.tag == Player)
+        if(_other.gameObject == player)
         {
             icon.SetActive(true);
 
@@ -39,7 +38,7 @@ public abstract class InteractableBase : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D _other) 
     {
-        if(_other.gameObject.tag == Player)
+        if(_other.gameObject == player)
         {
             icon.SetActive(false);
 
