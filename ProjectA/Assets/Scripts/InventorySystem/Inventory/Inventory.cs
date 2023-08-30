@@ -1,11 +1,9 @@
-
-
 using InventorySystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory :MonoBehaviour
+public class Inventory : MonoBehaviour
 {
     public static Inventory instance;
 
@@ -21,7 +19,7 @@ public class Inventory :MonoBehaviour
     {
         return itemList;
     }
-    public void AddItem(ItemObject item,int amount)
+    public void AddItem(ItemObject item, int amount)
     {
         if (item is IStackable)
         {
@@ -34,7 +32,7 @@ public class Inventory :MonoBehaviour
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private void AddStackableItem(IStackable item,int amount)
+    private void AddStackableItem(IStackable item, int amount)
     {
         bool itemAlreadyExist = false;
         int AddItemAmount = amount;
@@ -46,7 +44,7 @@ public class Inventory :MonoBehaviour
             }
             if ((ItemObject)item == InventoryItem.item)
             {
-                if (item.stackLimit !=0)
+                if (item.stackLimit != 0)
                 {
                     if (InventoryItem.amount + AddItemAmount > item.stackLimit)
                     {
@@ -55,14 +53,14 @@ public class Inventory :MonoBehaviour
                     }
                     else
                     {
-                        InventoryItem.amount += AddItemAmount;
+                        InventoryItem.AddAmount(AddItemAmount);
                         itemAlreadyExist = true;
                         break;
                     }
                 }
                 else
                 {
-                    InventoryItem.amount += AddItemAmount;
+                    InventoryItem.AddAmount(AddItemAmount);
                     itemAlreadyExist = true;
                     break;
                 }
@@ -74,9 +72,9 @@ public class Inventory :MonoBehaviour
         }
     }
 
-    private void AddIndependentItem(ItemObject item,int amount)
+    private void AddIndependentItem(ItemObject item, int amount)
     {
-        for (int i = 0; i<amount;i++)
+        for (int i = 0; i < amount; i++)
         {
             itemList.Add(new InventorySlot(item, amount));
         }

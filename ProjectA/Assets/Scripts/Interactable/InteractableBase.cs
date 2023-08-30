@@ -8,20 +8,15 @@ public abstract class InteractableBase : MonoBehaviour
     [SerializeField] protected GameObject icon;
     [SerializeField] protected GameObject player;
     protected Player playerScript;
-    protected bool isInteractable = false;
 
     public virtual void Start() 
     {
-        InputManager.Instanse.OnInteract_Performed += InputManager_OnInteract_Performed;
 
         playerScript = player.GetComponent<Player>();
     }
     private void InputManager_OnInteract_Performed(object sender, EventArgs e)
     {
-        if(isInteractable)
-        {
-            Interact();
-        }    
+        Interact();
     }
     public abstract void Interact();
 
@@ -31,18 +26,24 @@ public abstract class InteractableBase : MonoBehaviour
     {
         if(_other.gameObject == player)
         {
-            icon.SetActive(true);
+            if (icon != null)
+            {
+                icon.SetActive(true);
+            }
 
-            isInteractable = true;
+            InputManager.Instanse.OnInteract_Performed += InputManager_OnInteract_Performed;
         }
     }
     private void OnTriggerExit2D(Collider2D _other) 
     {
         if(_other.gameObject == player)
         {
-            icon.SetActive(false);
+            if (icon != null)
+            {
+                icon.SetActive(false);
+            }
 
-            isInteractable = false;
+            InputManager.Instanse.OnInteract_Performed -= InputManager_OnInteract_Performed;
         }
     }
     #endregion
