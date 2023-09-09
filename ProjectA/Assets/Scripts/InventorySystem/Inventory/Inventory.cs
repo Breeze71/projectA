@@ -1,9 +1,11 @@
+
+
 using InventorySystem;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class Inventory :MonoBehaviour
 {
     public static Inventory instance;
 
@@ -19,20 +21,23 @@ public class Inventory : MonoBehaviour
     {
         return itemList;
     }
-    public void AddItem(ItemObject item, int amount)
+    public void AddItem(ItemObject item,int amount)
     {
+        //Debug.Log("取得道具");
         if (item is IStackable)
         {
+            Debug.Log("堆疊道具");
             AddStackableItem((IStackable)item, amount);
         }
         else
         {
+            Debug.Log("增加道具");
             AddIndependentItem(item, amount);
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private void AddStackableItem(IStackable item, int amount)
+    private void AddStackableItem(IStackable item,int amount)
     {
         bool itemAlreadyExist = false;
         int AddItemAmount = amount;
@@ -44,7 +49,7 @@ public class Inventory : MonoBehaviour
             }
             if ((ItemObject)item == InventoryItem.item)
             {
-                if (item.stackLimit != 0)
+                if (item.stackLimit !=0)
                 {
                     if (InventoryItem.amount + AddItemAmount > item.stackLimit)
                     {
@@ -72,9 +77,9 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    private void AddIndependentItem(ItemObject item, int amount)
+    private void AddIndependentItem(ItemObject item,int amount)
     {
-        for (int i = 0; i < amount; i++)
+        for (int i = 0; i<amount;i++)
         {
             itemList.Add(new InventorySlot(item, amount));
         }
