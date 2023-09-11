@@ -23,15 +23,14 @@ public class Inventory :MonoBehaviour
     }
     public void AddItem(ItemObject item,int amount)
     {
-        //Debug.Log("取得道具");
         if (item is IStackable)
         {
-            Debug.Log("堆疊道具");
+            //Debug.Log("堆疊道具");
             AddStackableItem((IStackable)item, amount);
         }
         else
         {
-            Debug.Log("增加道具");
+            //Debug.Log("增加道具");
             AddIndependentItem(item, amount);
         }
         OnItemListChanged?.Invoke(this, EventArgs.Empty);
@@ -43,11 +42,11 @@ public class Inventory :MonoBehaviour
         int AddItemAmount = amount;
         foreach (InventorySlot InventoryItem in itemList)
         {
-            if (!(InventoryItem is IStackable))
+            if (!(InventoryItem.item is IStackable))
             {
                 continue;
             }
-            if ((ItemObject)item == InventoryItem.item)
+            if (item.GetType() == InventoryItem.item.GetType())
             {
                 if (item.stackLimit !=0)
                 {
