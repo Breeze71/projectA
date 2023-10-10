@@ -12,6 +12,9 @@ public class Movement : MonoBehaviour
 
     private void Update() 
     {
-        rb.velocity = InputManager.Instanse.GetPlayerMoveDirection() * moveSpeed;
+        int xInput = InputManager.Instance.xInput;
+        int yInput = InputManager.Instance.yInput;
+        
+        rb.velocity = new Vector2(xInput, yInput) * moveSpeed;
     }
 }
