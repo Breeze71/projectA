@@ -8,10 +8,11 @@ public class UI_Inventory : MonoBehaviour
 {
     [SerializeField] private Transform Container;
     [SerializeField] private Transform Template;
+    [SerializeField] private Inventory inventory;
 
     private void Awake()
     {
-        Inventory.instance.OnItemListChanged += Inventory_OnItemListChanged;
+        inventory.OnItemListChanged += Inventory_OnItemListChanged;
     }
     private void Inventory_OnItemListChanged(object sender,System.EventArgs e)
     {
@@ -28,7 +29,7 @@ public class UI_Inventory : MonoBehaviour
             }
             Destroy(child.gameObject);
         }
-        List<InventorySlot> itemlist =Inventory.instance.GetItemList();
+        List<InventorySlot> itemlist = inventory.GetItemList();
         foreach (InventorySlot itemslot in itemlist)
         {
             Transform obj = Instantiate(Template,Container);

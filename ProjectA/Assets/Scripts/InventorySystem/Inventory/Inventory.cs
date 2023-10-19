@@ -7,15 +7,8 @@ using UnityEngine;
 
 public class Inventory :MonoBehaviour
 {
-    public static Inventory instance;
-
     public event EventHandler OnItemListChanged;//之後用於UI程式碼訂閱 隨物品列變化更新UI
     private List<InventorySlot> itemList = new List<InventorySlot>();
-
-    private void Awake()
-    {
-        instance = this;
-    }
 
     public List<InventorySlot> GetItemList()
     {

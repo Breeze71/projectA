@@ -9,6 +9,9 @@ public class InputManager : MonoBehaviour
 
     private PlayerInput playerInput;
     private const string KeyBoard = "Keyboard";
+    #region Event
+    public event EventHandler OnInteract_Performed;
+    #endregion
 
     #region IsGetKey
     private Vector2 moveInput;
@@ -114,6 +117,7 @@ public class InputManager : MonoBehaviour
     {
         if(_context.started)
         {
+            OnInteract_Performed?.Invoke(this, EventArgs.Empty);
             isInteractKeyDown = true;
         }
         else if(_context.canceled)

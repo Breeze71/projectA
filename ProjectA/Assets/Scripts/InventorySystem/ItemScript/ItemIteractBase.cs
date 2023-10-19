@@ -10,6 +10,7 @@ public abstract class ItemIteractBase : MonoBehaviour
 
     [SerializeField] protected Collider2D coll;
     [SerializeField] protected GameObject icon;
+    protected Inventory inventory;
 
     protected bool canInteract;
 
@@ -25,33 +26,33 @@ public abstract class ItemIteractBase : MonoBehaviour
 
     /* 玩家是否在範圍內 */
     #region OnTrigger
-    protected virtual void OnTriggerEnter2D(Collider2D _other)
+    private void OnTriggerEnter2D(Collider2D _other)
     {
-        if (_other.gameObject.tag == Player)
+        inventory = _other.gameObject.GetComponent<Inventory>();
+        if (inventory != null)
         {
             if (icon != null)
             {
                 icon.SetActive(true);
             }
-
-            //InputManager.Instanse.OnInteract_Performed += InputManager_OnInteract_Performed;
+            InputManager.Instance.OnInteract_Performed += InputManager_OnInteract_Performed;
         }
     }
-    protected virtual void OnTriggerExit2D(Collider2D _other)
+    private void OnTriggerExit2D(Collider2D _other)
     {
-        if (_other.gameObject.tag == Player)
+        if (inventory != null)
         {
+            inventory = null;
             if (icon != null)
             {
                 icon.SetActive(false);
             }
-
-            //InputManager.Instance.OnInteract_Performed -= InputManager_OnInteract_Performed;
+            InputManager.Instance.OnInteract_Performed -= InputManager_OnInteract_Performed;
         }
     }
     public void Destroy()
     {
-        //InputManager.Instance.OnInteract_Performed -= InputManager_OnInteract_Performed;
+        InputManager.Instance.OnInteract_Performed -= InputManager_OnInteract_Performed;
         Destroy(gameObject);
     }
     #endregion
