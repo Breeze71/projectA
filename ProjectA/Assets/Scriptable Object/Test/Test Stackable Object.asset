@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a728235acb20d48b2697c9c0d555d0, type: 3}
   m_Name: Test Stackable Object
   m_EditorClassIdentifier: 
+  id: fd95a445-4026-4f88-8f26-e814594cf4d9
   sprite: {fileID: 21300000, guid: 58c9d04576cd571479e1b97a485678a6, type: 3}
   type: 1
   <stackLimit>k__BackingField: 10

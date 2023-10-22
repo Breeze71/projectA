@@ -28,21 +28,27 @@ public abstract class ItemIteractBase : MonoBehaviour
     #region OnTrigger
     private void OnTriggerEnter2D(Collider2D _other)
     {
-        inventory = _other.gameObject.GetComponent<Inventory>();
-        if (inventory != null)
+        if (_other.gameObject.tag == Player)
         {
-            if (icon != null)
+            inventory = _other.gameObject.GetComponent<Inventory>();
+            if (inventory != null)
             {
-                icon.SetActive(true);
+                if (icon != null)
+                {
+                    icon.SetActive(true);
+                }
+                InputManager.Instance.OnInteract_Performed += InputManager_OnInteract_Performed;
             }
-            InputManager.Instance.OnInteract_Performed += InputManager_OnInteract_Performed;
         }
     }
     private void OnTriggerExit2D(Collider2D _other)
     {
-        if (inventory != null)
+        if (_other.gameObject.tag == Player)
         {
-            inventory = null;
+            if (inventory != null)
+            {
+                inventory = null;
+            }
             if (icon != null)
             {
                 icon.SetActive(false);

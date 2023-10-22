@@ -4,11 +4,11 @@ using UnityEngine;
 public class PickableItem : ItemIteractBase
 {
     [SerializeField] ItemObject item;
-    [SerializeField] int amount;
+    [SerializeField] int quantity;
 
     public override void Interact()
     {
-        inventory.AddItem(item, amount);
+        inventory.AddItem(item, quantity);
         Destroy(gameObject);
     }
 }

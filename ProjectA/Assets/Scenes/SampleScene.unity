@@ -4612,7 +4612,7 @@ MonoBehaviour:
   coll: {fileID: 1685616179}
   icon: {fileID: 0}
   item: {fileID: 11400000, guid: 343c5d1179301bd4e827f171124df816, type: 2}
-  amount: 0
+  quantity: 0
 --- !u!61 &1685616179
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -39,8 +39,9 @@ public class Inventory :MonoBehaviour
             {
                 continue;
             }
-            if (item.GetType() == InventoryItem.item.GetType())
+            if (((ItemObject)item).id== InventoryItem.item.id)
             {
+                Debug.Log("­«½Æ");
                 if (item.stackLimit !=0)
                 {
                     if (InventoryItem.amount + AddItemAmount > item.stackLimit)
