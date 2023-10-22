@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     private const string KeyBoard = "Keyboard";
     #region Event
     public event EventHandler OnInteract_Performed;
+    public event EventHandler OnStatusUI_Performed;
     #endregion
 
     #region IsGetKey
@@ -41,7 +42,7 @@ public class InputManager : MonoBehaviour
             Instance = this;
         }
 
-        playerInput = GetComponent<PlayerInput>();
+        //playerInput = GetComponent<PlayerInput>();
     }
 
     public void MoveInput(InputAction.CallbackContext _context)
@@ -65,6 +66,13 @@ public class InputManager : MonoBehaviour
         else
         {
             yInput = 0;
+        }
+    }
+    public void StatusUI_onoff(InputAction.CallbackContext _context)
+    {
+        if (_context.started)
+        {
+            OnStatusUI_Performed?.Invoke(this, EventArgs.Empty);
         }
     }
 
@@ -103,19 +111,19 @@ public class InputManager : MonoBehaviour
     public void DashDirectionInput_Normolize(InputAction.CallbackContext _context)
     {
         dashDirection = _context.ReadValue<Vector2>();
-
+        /*
         if(playerInput.currentControlScheme == KeyBoard)
         {
             dashDirection = cam.ScreenToWorldPoint((Vector3)dashDirection) - player.transform.position;
         }
-
+        */
         dashDirection_Normolize = Vector2Int.RoundToInt(dashDirection.normalized);
     }
     #endregion
 
     public void InteractInput(InputAction.CallbackContext _context)
     {
-        if(_context.started)
+        if (_context.started)
         {
             OnInteract_Performed?.Invoke(this, EventArgs.Empty);
             isInteractKeyDown = true;
