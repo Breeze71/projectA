@@ -71,3 +71,11 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+ProjectA/Assets/Ink/Font.meta
+ProjectA/Assets/Ink/Font/TraditionalChinese.meta
+ProjectA/Assets/Ink/Font/TraditionalChinese/MINGLIU SDF.asset.meta
+ProjectA/Assets/Ink/Font/TraditionalChinese/MINGLIU SDF.asset
+ProjectA/Assets/Ink/Font/TraditionalChinese/MINGLIU.TTC
+ProjectA/Assets/Ink/Font/TraditionalChinese/MINGLIU.TTC.meta
+ProjectA/Assets/Ink/Font/TraditionalChinese/TraditionalChinese.txt
+ProjectA/Assets/Ink/Font/TraditionalChinese/TraditionalChinese.txt.meta

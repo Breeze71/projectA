@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e43a091e6c858845b11f82b74c2f37d, type: 3}
+  m_Name: New Movement SO
+  m_EditorClassIdentifier: 
+  WalkSpeed: 5
+  SprintSpeed: 10
+  MoveLerp: 10
+  walkSquash: {fileID: 11400000, guid: a2c3da6d8b0b6ee409bdfff130b67e45, type: 2}
+  sprintSquash: {fileID: 11400000, guid: 15c32c784c007144ba0b53254019f565, type: 2}
