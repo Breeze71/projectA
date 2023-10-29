@@ -8,10 +8,12 @@ public class UI_Inventory : MonoBehaviour
 {
     [SerializeField] private Transform Container;
     [SerializeField] private Transform Template;
-    [SerializeField] private Inventory inventory;
+    [SerializeField] private GameObject Object_with_Inventory;
+    private Inventory inventory;
 
     private void Awake()
     {
+        inventory = Object_with_Inventory.GetComponent<Inventory>();
         inventory.OnItemListChanged += Inventory_OnItemListChanged;
     }
     private void Inventory_OnItemListChanged(object sender,System.EventArgs e)
