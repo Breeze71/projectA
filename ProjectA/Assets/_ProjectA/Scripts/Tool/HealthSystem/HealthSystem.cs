@@ -4,38 +4,46 @@ public class HealthSystem
 {
     public event EventHandler OnHealthChanged;
 
-    private int health;
-    private int healthMax;
+    private int currentHealth;
+    private int maxHealth;
 
-    public HealthSystem(int _healthMax)
+    public HealthSystem(int _maxHealth)
     {
-        healthMax = _healthMax;
-        health = healthMax;
+        maxHealth = _maxHealth;
+        currentHealth = maxHealth;
     }
 
     public int GetHealthAmount()
     {
-        return health;
+        return currentHealth;
     }
     
     public float GetHealthPercent()
     {
-        return (float)health / healthMax;
+        return (float)currentHealth / maxHealth;
     }
 
     public void TakeDamage(int _damageAmount)
     {
-        health -= _damageAmount;
+        currentHealth -= _damageAmount;
 
-        if(health <= 0) health = 0;
-        if(OnHealthChanged != null) OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        if(currentHealth <= 0)
+        {
+            currentHealth = 0;
+        }
+
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void Heal(int _healthAmount)
+    public void TakeHealing(int _healingAmount)
     {
-        health += _healthAmount;
+        currentHealth += _healingAmount;
 
-        if(health >= healthMax) health = healthMax;
-        if(OnHealthChanged != null) OnHealthChanged?.Invoke(this, EventArgs.Empty);
+        if(currentHealth >= maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
     }
 }

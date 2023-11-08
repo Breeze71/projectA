@@ -134,7 +134,7 @@ public class DialogueManager : MonoBehaviour
     #endregion
 
     #region Dialogue
-    public void StartDialogue(TextAsset _inkJson, Animator _emoteAnim)
+    public void StartDialogue(TextAsset _inkJson)
     {
         currentStory = new Story(_inkJson.text);
         
